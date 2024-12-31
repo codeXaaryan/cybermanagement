@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Transactions - Cyber Cafe</title>
+    <style>
+        /* Basic styling for the transaction page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        main {
+            margin: 30px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .search-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .search-container input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .action-buttons button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Manage Transactions - Cyber Cafe Management System</h2>
+    </header>
+    <main>
+        <h1>Transaction History</h1>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by User or Service" onkeyup="searchTransactions()">
+        </div>
+
+        <table id="transactionTable">
+            <thead>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>User Name</th>
+                    <th>Service</th>
+                    <th>Amount Paid</th>
+                    <th>Date</th>
+                    <th>Payment Method</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Transaction data will be dynamically loaded here -->
+            </tbody>
+        </table>
+
+        <div class="action-buttons">
+            <button onclick="window.location.href='add_transaction.html'">Add New Transaction</button>
+            <button onclick="exportTransactions()">Export to CSV</button>
+        </div>
+    </main>
+
+    <script>
+        // Function to search transactions based on user input
+        function searchTransactions() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#transactionTable tbody tr');
+            rows.forEach(row => {
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+                for (let i = 0; i < cells.length; i++) {
+                    if (cells[i].textContent.toLowerCase().includes(input)) {
+                        found = true;
+                    }
+                }
+                if (found) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Function to export transactions to a CSV file
+        function exportTransactions() {
+            let table = document.getElementById("transactionTable");
+            let rows = table.rows;
+            let csvContent = "Transaction ID,User Name,Service,Amount Paid,Date,Payment Method\n";
+            for (let i = 1; i < rows.length; i++) {
+                let cells = rows[i].getElementsByTagName("td");
+                let row = [];
+                for (let j = 0; j < cells.length; j++) {
+                    row.push(cells[j].textContent);
+                }
+                csvContent += row.join(",") + "\n";
+            }
+            let encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
+            let link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "transactions.csv");
+            link.click();
+        }
+
+        // Fetching transaction data from the server (backend)
+        window.onload = function() {
+            fetchTransactions();
+        };
+
+        function fetchTransactions() {
+            fetch('your_backend_cgi_script.cgi')  // Replace with the correct URL to your CGI script
+                .then(response => response.text())
+                .then(data => {
+                    const tbody = document.querySelector('#transactionTable tbody');
+                    tbody.innerHTML = '';  // Clear existing rows
+                    
+                    // Assuming the backend sends HTML table rows, insert them into the table
+                    tbody.innerHTML = data;
+                })
+                .catch(error => console.error('Error fetching transaction data:', error));
+        }
+    </script>
+</body>
+</html>

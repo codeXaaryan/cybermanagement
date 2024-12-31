@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Settings - Cyber Cafe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Manage Settings</h1>
+    </header>
+
+    <div class="container">
+        <!-- Cafe Information Settings -->
+        <div class="section">
+            <h2>Cafe Information</h2>
+            <form>
+                <div class="form-group">
+                    <label for="cafeName">Cafe Name</label>
+                    <input type="text" id="cafeName" name="cafeName" value="Cyber Cafe X">
+                </div>
+                <div class="form-group">
+                    <label for="cafeAddress">Cafe Address</label>
+                    <input type="text" id="cafeAddress" name="cafeAddress" value="123 Street, City">
+                </div>
+                <div class="form-group">
+                    <label for="cafeContact">Cafe Contact</label>
+                    <input type="text" id="cafeContact" name="cafeContact" value="contact@cybercafe.com">
+                </div>
+            </form>
+        </div>
+
+        <!-- Pricing Settings -->
+        <div class="section">
+            <h2>Pricing Settings</h2>
+            <form>
+                <div class="form-group">
+                    <label for="internetPrice">Internet Access Price (per hour)</label>
+                    <input type="number" id="internetPrice" name="internetPrice" value="2.00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="gamingPrice">Gaming Price (per hour)</label>
+                    <input type="number" id="gamingPrice" name="gamingPrice" value="5.00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="printingPrice">Printing Price (per page)</label>
+                    <input type="number" id="printingPrice" name="printingPrice" value="0.50" step="0.01">
+                </div>
+                <button type="submit">Save Pricing Settings</button>
+            </form>
+        </div>
+
+        <!-- Stop User Usage -->
+        <div class="section">
+            <h2>Stop User Usage</h2>
+            <form id="stopUserForm">
+                <div class="form-group">
+                    <label for="username">Enter Username</label>
+                    <input type="text" id="username" name="username" placeholder="Username to disable">
+                </div>
+                <div class="form-group">
+                    <label for="action">Action</label>
+                    <select id="action" name="action">
+                        <option value="disable">Disable User</option>
+                        <option value="enable">Enable User</option>
+                    </select>
+                </div>
+                <button type="submit">Update User Status</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        // Handle form submission for stopping user usage
+        document.getElementById("stopUserForm").onsubmit = function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById("username").value;
+            const action = document.getElementById("action").value;
+            
+            // Call backend to disable/enable user
+            fetch(`/update_user_status.cgi?username=${username}&action=${action}`)
+                .then(response => response.text())
+                .then(data => {
+                    alert(data);
+                })
+                .catch(error => {
+                    alert("An error occurred: " + error);
+                });
+        };
+    </script>
+
+</body>
+</html>

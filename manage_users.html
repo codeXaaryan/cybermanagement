@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users - Cyber Cafe Management System</title>
+    <style>
+        /* Styles for the manage users page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        main {
+            margin: 30px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 200px;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .action-buttons {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Manage Users - Cyber Cafe Management System</h2>
+    </header>
+
+    <main>
+        <h1>List of Users</h1>
+        
+        <!-- Table to display user data dynamically from the backend -->
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Username</th>
+            </tr>
+
+            <!-- The backend will insert user data rows here -->
+            <!-- This will be populated by the CGI backend script -->
+            <!-- Example Row -->
+            <!-- <tr><td>John Doe</td><td>john.doe@example.com</td><td>johndoe</td></tr> -->
+
+        </table>
+
+        <div class="action-buttons">
+            <button><a href="add_user.html" style="color: white; text-decoration: none;">Add New User</a></button>
+        </div>
+    </main>
+
+</body>
+</html>

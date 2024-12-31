@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* Basic styling for the admin page */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: linear-gradient(45deg, #007bff, #00c6ff);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+        }
+
+        header h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        main {
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 1200px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding-bottom: 70px; /* Extra space to position the logout button */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .action-buttons a,
+        .action-buttons button {
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            width: 220px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .action-buttons a {
+            background-color: #007bff;
+        }
+
+        .action-buttons a:hover {
+            background-color: #0056b3;
+        }
+
+        .action-buttons button {
+            background-color: #dc3545;
+        }
+
+        .action-buttons button:hover {
+            background-color: #c82333;
+        }
+
+        .action-buttons a:hover {
+            background-color: #218838;
+        }
+
+        /* Center logout button at the bottom */
+        .logout-btn-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h2 {
+                font-size: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h2 {
+                font-size: 1.2rem;
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons a,
+            .action-buttons button {
+                width: 100%;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h2>Admin Dashboard - Cyber Cafe Management System</h2>
+    </header>
+    <main>
+        <h1>Welcome Admin</h1>
+        <p>This is the admin dashboard where you can manage users, services, and cafe operations.</p>
+
+        <div class="action-buttons">
+            <a href="manage_users.html">Manage Users</a>
+            <a href="manage_services.html">Manage Services</a>
+            <a href="transaction.html">View Transactions</a>
+            <a href="veiw_analytics.html">View Analytics</a>
+            <a href="setings.html">Manage Settings</a>
+        </div>
+
+        <!-- Logout button at the bottom center -->
+        <div class="logout-btn-container">
+            <button onclick="logout()">Logout</button>
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            const confirmation = confirm("Are you sure you want to logout?");
+            if (confirmation) {
+                // Clear session or cookies if needed
+                // Example: sessionStorage.clear(); (or any other logout mechanism)
+                window.location.href = "login_page.html"; // Redirect to the login page
+            }
+        }
+    </script>
+</body>
+
+</html>
