@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Transactions - Cyber Cafe</title>
     <style>
+                ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #007bff;
+            overflow: hidden;
+        }
+
+        li {
+            padding: 10px 15px;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        li:hover {
+            background-color: #0056b3;
+        }
+
+        #content {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
         /* Basic styling for the transaction page */
         body {
             font-family: Arial, sans-serif;
@@ -74,6 +104,15 @@
     <header>
         <h2>Manage Transactions - Cyber Cafe Management System</h2>
     </header>
+    <ul>
+        <li><a href="admin.html">Home</a></li>
+        <li><a href="manage_users.html">Manage Users</a></li>
+        <li><a href="manage_services.html">Manage services</a></li>
+
+        <li><a href="veiw_analytics.html">Veiw Analytics</a></li>
+        <li><a href="setings.html">Manage Settings</a></li>
+      </ul>
+
     <main>
         <h1>Transaction History</h1>
 
@@ -150,7 +189,7 @@
         };
 
         function fetchTransactions() {
-            fetch('your_backend_cgi_script.cgi')  // Replace with the correct URL to your CGI script
+            fetch('fetch_transactions.cgi')  // Update with the correct endpoint
                 .then(response => response.text())
                 .then(data => {
                     const tbody = document.querySelector('#transactionTable tbody');
